@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,8 +28,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased container mx-auto flex flex-col gap-8 items-center justify-center max-w-3xl my-20 px-20`}
       >
+        <div className="bg-slate-100 rounded-lg flex w-full justify-end">
+          <Button variant="link" asChild>
+            <Link href="/">Home</Link>
+          </Button>
+        </div>
+        <h1 className="text-5xl font-bold">Flashclass</h1>
         {children}
       </body>
     </html>
