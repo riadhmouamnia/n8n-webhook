@@ -1,6 +1,6 @@
 "use server";
 
-import { API_BASE_URL, PROD_URL } from "@/lib/constants";
+import { API_BASE_URL, PROD_URL, TEST_URL } from "@/lib/constants";
 
 export async function getCurrentExecution(
   id: string
@@ -39,6 +39,7 @@ export async function getWorkflowName(id: string) {
 
 export default async function exectuteWorkflow(webhookTriggerId: string) {
   const res = await fetch(`${PROD_URL}/${webhookTriggerId}`);
+  // const res = await fetch(`${TEST_URL}/${webhookTriggerId}`); // For testing
   const data = await res.json();
   return data;
 }

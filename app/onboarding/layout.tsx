@@ -1,5 +1,4 @@
 import { getCurrentExecution } from "@/actions/execution";
-import { Button } from "@/components/ui/button";
 import { RESUME_URL } from "@/lib/constants";
 import { getCookie } from "@/lib/cookies";
 import { redirect, RedirectType } from "next/navigation";
@@ -26,16 +25,9 @@ export default async function RootLayout({
   }
 
   return (
-    <div className="w-full h-full flex flex-col gap-8 justify-between">
-      <h2 className="text-3xl font-bold">Onboarding</h2>
+    <div className="w-full h-full min-h-screen flex flex-col justify-between">
       {children}
-      {currentExecution.finished ||
-      currentExecution.status === "canceled" ? null : (
-        <form action={resumeExecution}>
-          <Button>Next</Button>
-        </form>
-      )}
-      <div className="mt-8">
+      <div className="text-xs bg-slate-100 py-2 px-4">
         <p>Current Execution: {currentExecution?.status} </p>
       </div>
     </div>

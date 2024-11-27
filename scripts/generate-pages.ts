@@ -65,17 +65,22 @@ async function selectWorkflow(workflows: Workflow[]) {
 }
 
 function sanitizeName(name: string) {
-  return name
+  const nameArray = name
     .replace(/^[0-9_.-]+/, "")
     .replace(/[_.-]/g, "")
-    .replace(/(?:^|\s)\S/g, (a) => a.toUpperCase());
+    .replace(/(?:^|\s)\S/g, (a) => a.toUpperCase())
+    .split(" ");
+
+  nameArray.forEach((word) => word.charAt(0).toUpperCase());
+  const newName = nameArray.join("");
+  return newName;
 }
 
 async function generatePages(waitNodes: Node[]) {
   waitNodes.forEach(async (waitNode) => {
     const folderName = waitNode.id;
     const name = sanitizeName(waitNode.name);
-    const pageName = name.charAt(0).toUpperCase() + name.slice(1);
+    const pageName = name + "Page";
     const folderPath = path.join(__dirname, `../app/onboarding/${folderName}`);
     if (!fs.existsSync(folderPath)) {
       fs.mkdirSync(folderPath);

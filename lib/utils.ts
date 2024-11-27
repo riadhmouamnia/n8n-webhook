@@ -11,3 +11,9 @@ export function getHeaders() {
   headers.set("mode", "no-cors");
   return headers;
 }
+
+export function extractData(inputArray: any[]): Summary {
+  return inputArray.reduce((result, item) => {
+    return { ...result, ...item };
+  }, {} as Summary);
+}

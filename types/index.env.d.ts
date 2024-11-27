@@ -116,44 +116,39 @@ interface Workflow {
   tags: Tag[];
 }
 
-// {
-//   "parameters": {
-//     "resume": "webhook",
-//     "options": {}
-//   },
-//   "id": "dcf7fdf3-75e4-4ab1-9763-b2d026d5bd11",
-//   "name": "Wait-2",
-//   "type": "n8n-nodes-base.wait",
-//   "typeVersion": 1.1,
-//   "position": [
-//     460,
-//     20
-//   ],
-//   "webhookId": "14213cf4-a03c-41e5-96b0-e29e42cae3d1"
-// },
+interface Preference {
+  id: number;
+  label: string;
+  icon: JSX.Element;
+  metadata: string;
+}
 
-// {
-//   "parameters": {
-//     "path": "81077764-c44b-4b8b-a729-b94ae18b094c",
-//     "responseMode": "responseNode",
-//     "options": {}
-//   },
-//   "id": "5df08609-51c0-40f0-881b-b05e35a9bcf1",
-//   "name": "Webhook",
-//   "type": "n8n-nodes-base.webhook",
-//   "typeVersion": 2,
-//   "position": [
-//     0,
-//     20
-//   ],
-//   "webhookId": "81077764-c44b-4b8b-a729-b94ae18b094c"
-// },
+type Topic = {
+  id: string;
+  content: string;
+};
 
-// https://n8n-flashclass.onrender.com/webhook/81077764-c44b-4b8b-a729-b94ae18b094c
+type Time = {
+  duration: string;
+  frequency: string;
+};
 
-// curl https://n8n-flashclass.onrender.com/webhook-waiting/14213cf4-a03c-41e5-96b0-e29e42cae3d1 // this is the webhookId
-// curl https://n8n-flashclass.onrender.com/webhook-waiting/dcf7fdf3-75e4-4ab1-9763-b2d026d5bd11 // this is the id
+type LearningPreference = {
+  id: number;
+  label: string;
+  icon: Record<string, unknown>; // or specific type if you know the structure of the icon
+  metadata: string;
+};
 
-// curl https://n8n-flashclass.onrender.com/14213cf4-a03c-41e5-96b0-e29e42cae3d1 // this is the webhookId
-// curl https://n8n-flashclass.onrender.com/dcf7fdf3-75e4-4ab1-9763-b2d026d5bd11 // this is the id
-// curl https://n8n-flashclass.onrender.com/webhook-waiting/123
+type Summary = {
+  courseTitle: string;
+  time: Time;
+  selectedQuestions: string[];
+  topics: {
+    excluded: Topic[];
+    included: Topic[];
+    rest: Topic[];
+  };
+  learningGoal: string;
+  learningPreferences: LearningPreference[];
+};
