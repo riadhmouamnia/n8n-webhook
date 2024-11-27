@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface WebhookExecutionMetadata {
   id: string;
   finished: boolean;
@@ -72,3 +73,82 @@ interface WebhookExecutionMetadata {
   };
   customData: Record<string, unknown>;
 }
+
+interface WorkflowTag {
+  createdAt: string;
+  updatedAt: string;
+  id: string;
+  name: string;
+}
+
+interface Node {
+  parameters: Record<string, any>;
+  id: string;
+  name: string;
+  type: string;
+  typeVersion: number;
+  position: [number, number];
+  webhookId?: string;
+}
+
+interface Connection {
+  main: Array<Array<{ node: string; type: string; index: number }>>;
+}
+
+interface Settings {
+  executionOrder: string;
+}
+
+interface Workflow {
+  createdAt: string;
+  updatedAt: string;
+  id: string;
+  name: string;
+  active: boolean;
+  nodes: Node[];
+  connections: Record<string, Connection>;
+  settings: Settings;
+  staticData: any;
+  meta: any;
+  pinData: Record<string, any>;
+  versionId: string;
+  triggerCount: number;
+  tags: Tag[];
+}
+
+interface Preference {
+  id: number;
+  label: string;
+  icon: JSX.Element;
+  metadata: string;
+}
+
+type Topic = {
+  id: string;
+  content: string;
+};
+
+type Time = {
+  duration: string;
+  frequency: string;
+};
+
+type LearningPreference = {
+  id: number;
+  label: string;
+  icon: Record<string, unknown>; // or specific type if you know the structure of the icon
+  metadata: string;
+};
+
+type Summary = {
+  courseTitle: string;
+  time: Time;
+  selectedQuestions: string[];
+  topics: {
+    excluded: Topic[];
+    included: Topic[];
+    rest: Topic[];
+  };
+  learningGoal: string;
+  learningPreferences: LearningPreference[];
+};

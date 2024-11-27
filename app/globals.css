@@ -70,3 +70,31 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.topic-card {
+  @apply p-3 rounded-lg bg-white/80 backdrop-blur-sm border shadow-sm transition-all duration-200;
+}
+
+.topic-card:hover {
+  @apply shadow-md transform -translate-y-0.5;
+}
+
+.dragging {
+  @apply opacity-50 shadow-lg scale-105;
+}
+
+.column {
+  @apply p-4 rounded-xl backdrop-blur-sm min-h-[500px] w-full max-w-sm;
+}
+
+.exclude-column {
+  @apply bg-red-50/80 border-red-100;
+}
+
+.include-column {
+  @apply bg-green-50/80 border-green-100;
+}
+
+.neutral-column {
+  @apply bg-gray-50/80 border-gray-100;
+}

@@ -1,19 +1,13 @@
-import startWorkflow from "@/actions/start-workflow";
-import { Button } from "@/components/ui/button";
-// import { redirect } from "next/navigation";
+import { getCurrentExecution } from "@/actions/execution";
+import { getWorkflowsByTagName } from "@/actions/workflow";
+import Workflowcards from "@/components/workflow-cards";
 
 export default async function Home() {
-  // const user = {
-  //   id: 1,
-  //   name: "John Doe",
-  //   email: "l6B8t@example.com",
-  // };
+  const workflows = await getWorkflowsByTagName("flashclass");
 
   return (
-    <form action={startWorkflow} className="w-full">
-      <Button type="submit" className="w-full">
-        Start
-      </Button>
-    </form>
+    <div className="h-full flex flex-col gap-4 items-center justify-center px-8 lg:px-4">
+      <Workflowcards workflows={workflows} />
+    </div>
   );
 }
